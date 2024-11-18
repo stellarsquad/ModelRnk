@@ -2,7 +2,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   background-color: #f4f4f4;
   text-align: center;
 }
@@ -50,11 +50,11 @@ nav {
   justify-content: space-evenly; /* Равномерное распределение блоков */
   align-items: center; /* Центрирование элементов по вертикали */
   padding: 10px 0;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Тень для эффекта */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Тень для отделения меню */
 }
 
 nav a {
-  flex: 1; /* Каждый элемент занимает равную ширину */
+  flex: 1; /* Каждый элемент занимает равное пространство */
   text-align: center; /* Текст по центру */
   color: white;
   text-decoration: none;
@@ -66,7 +66,7 @@ nav a {
 nav a:hover {
   background-color: #0056b3; /* Фон при наведении */
   text-decoration: underline;
-  border-radius: 5px; /* Небольшое скругление */
+  border-radius: 5px; /* Скругление углов */
 }
 
 /* Общий стиль для всех кнопок */
@@ -87,7 +87,7 @@ button:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Специальный стиль для кнопки "Войти через Telegram" */
+/* Кнопка "Войти через Telegram" */
 #loginButton {
   margin-top: 20px;
   text-transform: uppercase;
