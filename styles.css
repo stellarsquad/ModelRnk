@@ -1,3 +1,4 @@
+/* Общие стили для страницы */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,6 +7,7 @@ body {
   text-align: center;
 }
 
+/* Стиль профиля */
 .profile {
   margin: 20px auto;
   width: 300px;
@@ -38,6 +40,7 @@ body {
   background-color: #0056b3;
 }
 
+/* Навигационное меню */
 nav {
   position: fixed;
   bottom: 0;
@@ -58,7 +61,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Общий стиль для кнопок */
+/* Общий стиль для всех кнопок */
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -68,12 +71,12 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Эффект при наведении */
 button:hover {
   background-color: #0056b3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Кнопка "Войти через Telegram" */
