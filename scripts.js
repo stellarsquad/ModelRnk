@@ -40,4 +40,27 @@ document.addEventListener("DOMContentLoaded", () => {
       "Кнопка #editProfileButton не найдена. Логика редактирования профиля не будет работать."
     );
   }
+  document.addEventListener("DOMContentLoaded", () => {
+    // Логика выполнения заданий
+    const taskList = document.getElementById("taskList");
+    const completeTaskButton = document.getElementById("completeTaskButton");
+    const ratingValue = document.getElementById("ratingValue"); // Рейтинг с главной страницы
+
+    let currentRating = parseInt(ratingValue?.textContent || "0", 10);
+
+    if (completeTaskButton && taskList) {
+      completeTaskButton.addEventListener("click", () => {
+        const task = taskList.querySelector("li"); // Берём первое задание
+        if (task) {
+          const points = parseInt(task.dataset.points, 10); // Получаем баллы задания
+          currentRating += points;
+          if (ratingValue) ratingValue.textContent = currentRating; // Обновляем рейтинг
+          alert(`Вы выполнили задание и получили ${points} баллов!`);
+          task.remove(); // Удаляем выполненное задание
+        } else {
+          alert("Все задания выполнены!");
+        }
+      });
+    }
+  });
 });
