@@ -1,43 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Логика для кнопки "Войти через Telegram"
-  const loginButton = document.getElementById("loginButton");
-  if (loginButton) {
-    loginButton.addEventListener("click", () => {
-      alert("Кнопка работает!");
-      window.location.href = "main.html"; // Перенаправление на главную страницу
-    });
-  }
+  // Загружаем рейтинг из localStorage
+  const ratingValue = document.getElementById("ratingValue");
+  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
 
-  // Логика редактирования профиля
-  const editProfileButton = document.getElementById("editProfileButton");
-  const profileName = document.getElementById("profileName");
-  const profilePhoto = document.getElementById("profilePhoto");
-
-  if (editProfileButton) {
-    editProfileButton.addEventListener("click", () => {
-      const newName = prompt(
-        "Введите новое имя:",
-        profileName?.textContent || "Пользователь"
-      );
-      if (newName) {
-        profileName.textContent = newName;
-      }
-
-      const newPhotoUrl = prompt(
-        "Введите URL нового фото:",
-        profilePhoto?.src || ""
-      );
-      if (newPhotoUrl) {
-        profilePhoto.src = newPhotoUrl;
-      }
-    });
-  }
-
-  // Логика работы с рейтингом
-  const ratingValue = document.getElementById("ratingValue"); // Элемент для отображения рейтинга
-  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10); // Загружаем рейтинг из localStorage
-
-  // Отображаем текущий рейтинг при загрузке страницы
+  // Отображаем рейтинг при загрузке страницы
   if (ratingValue) {
     ratingValue.textContent = currentRating;
   }
@@ -65,9 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Обработчик для клика по каждому заданию
     taskList.addEventListener("click", (event) => {
-      const task = event.target.closest("li"); // Определяем, на какое задание кликнули
+      const task = event.target.closest("li");
       if (task) {
         const points = parseInt(task.dataset.points, 10);
         currentRating += points;
