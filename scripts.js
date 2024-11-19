@@ -33,21 +33,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Логика работы с рейтингом
+  const ratingValue = document.getElementById("ratingValue"); // Элемент для отображения рейтинга
+  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10); // Загружаем рейтинг из localStorage
+
+  // Отображаем текущий рейтинг при загрузке страницы
+  if (ratingValue) {
+    ratingValue.textContent = currentRating;
+  }
+
   // Логика выполнения заданий
   const taskList = document.getElementById("taskList");
   const completeTaskButton = document.getElementById("completeTaskButton");
-  const ratingValue = document.getElementById("ratingValue"); // Рейтинг с главной страницы
 
-  // Установка начального рейтинга
-  let currentRating = parseInt(ratingValue?.textContent || "0", 10);
-
-  // Обработчик для кнопки "Выполнить задание"
   if (completeTaskButton && taskList) {
     completeTaskButton.addEventListener("click", () => {
       const firstTask = taskList.querySelector("li"); // Берём первое задание
       if (firstTask) {
         const points = parseInt(firstTask.dataset.points, 10); // Получаем баллы задания
         currentRating += points;
+        localStorage.setItem("userRating", currentRating); // Сохраняем рейтинг в localStorage
         if (ratingValue) {
           ratingValue.textContent = currentRating; // Обновляем рейтинг на странице
         }
@@ -64,8 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
     taskList.addEventListener("click", (event) => {
       const task = event.target.closest("li"); // Определяем, на какое задание кликнули
       if (task) {
-        const points = parseInt(task.dataset.points, 10); // Получаем баллы
+        const points = parseInt(task.dataset.points, 10);
         currentRating += points;
+        localStorage.setItem("userRating", currentRating); // Сохраняем рейтинг в localStorage
         if (ratingValue) {
           ratingValue.textContent = currentRating; // Обновляем рейтинг
         }
