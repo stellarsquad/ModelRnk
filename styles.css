@@ -7,36 +7,51 @@ body {
   text-align: center;
 }
 
-/* Профиль */
-.profile {
+/* Блок с заданиями */
+.tasks {
   margin: 20px auto;
-  width: 300px;
-  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
 }
 
-.profile img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 10px;
+.tasks ul {
+  list-style: none;
+  padding: 0;
 }
 
-.profile button {
+.tasks li {
+  margin: 5px 0;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer; /* Задания кликабельны */
+}
+
+.tasks li:hover {
+  background-color: #f1f1f1;
+}
+
+.tasks button {
   margin-top: 10px;
-  padding: 10px 20px;
+  width: 100%;
+  padding: 10px 0;
   font-size: 16px;
+  font-weight: bold;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.profile button:hover {
+.tasks button:hover {
   background-color: #0056b3;
 }
 
@@ -68,45 +83,4 @@ nav a:hover {
   background-color: #0056b3;
   text-decoration: underline;
   border-radius: 5px;
-}
-
-/* Блок с топ-пользователями */
-.top-users {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 400px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: left;
-}
-
-.top-users ul {
-  list-style: none;
-  padding: 0;
-}
-
-.top-users li {
-  margin: 5px 0;
-  padding: 8px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-
-.top-users li:nth-child(1) {
-  background-color: #ffd700; /* Золотой цвет для первого места */
-}
-
-.top-users li:nth-child(2) {
-  background-color: #c0c0c0; /* Серебряный цвет для второго места */
-}
-
-.top-users li:nth-child(3) {
-  background-color: #cd7f32; /* Бронзовый цвет для третьего места */
-}
-
-.top-users li:hover {
-  background-color: #f1f1f1;
 }
