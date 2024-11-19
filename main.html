@@ -3,25 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Главная страница</title>
+    <title>Моя анкета</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1>Моя анкета</h1>
-    <p>Рейтинг: <span id="ratingValue">0</span></p>
+
     <div class="profile">
-      <img
-        id="profilePhoto"
-        src="https://via.placeholder.com/150"
-        alt="Фото профиля"
-      />
+      <img src="placeholder.png" alt="Фото профиля" id="profilePhoto" />
       <h2 id="profileName">Имя пользователя</h2>
-      <p id="profileRating">Рейтинг: <strong>0</strong></p>
+      <p>Рейтинг: <span id="ratingValue">0</span></p>
       <button id="editProfileButton">Редактировать профиль</button>
     </div>
 
     <nav>
-      <a href="main.html">Главная</a>
+      <a href="main.html" class="active">Главная</a>
       <a href="tasks.html">Задания</a>
       <a href="top.html">Топ</a>
       <a href="rating.html">Рейтинг</a>
