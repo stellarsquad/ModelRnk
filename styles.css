@@ -116,3 +116,44 @@ nav a:hover {
 .tasks button:hover {
   background-color: #0056b3;
 }
+
+/* Блок с топ-пользователями */
+.top-users {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.top-users ul {
+  list-style: none;
+  padding: 0;
+}
+
+.top-users li {
+  margin: 5px 0;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.top-users li:nth-child(1) {
+  background-color: #ffd700; /* Золотой цвет для первого места */
+}
+
+.top-users li:nth-child(2) {
+  background-color: #c0c0c0; /* Серебряный цвет для второго места */
+}
+
+.top-users li:nth-child(3) {
+  background-color: #cd7f32; /* Бронзовый цвет для третьего места */
+}
+
+.top-users li:hover {
+  background-color: #f1f1f1;
+}
