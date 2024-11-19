@@ -15,7 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
     userBalanceElement.textContent = currentBalance;
   }
 
-  // Логика выполнения заданий
+  // Логика для кнопки "Получить монеты"
+  const earnCoinsButton = document.getElementById("earnCoinsButton");
+  if (earnCoinsButton) {
+    earnCoinsButton.addEventListener("click", () => {
+      const earnedCoins = 50; // Количество монет за нажатие
+      currentBalance += earnedCoins;
+
+      // Сохраняем обновлённый баланс
+      localStorage.setItem("userBalance", currentBalance);
+
+      // Обновляем отображение баланса
+      if (userBalanceElement) {
+        userBalanceElement.textContent = currentBalance;
+      }
+
+      alert(`Вы получили ${earnedCoins} монет!`);
+    });
+  }
+
+  // Логика для выполнения заданий
   const taskList = document.getElementById("taskList");
   const completeTaskButton = document.getElementById("completeTaskButton");
 
@@ -46,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Обработчик для клика по заданиям
     taskList.addEventListener("click", (event) => {
       const task = event.target.closest("li");
       if (task) {
@@ -72,11 +90,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Логика для пополнения баланса (покупка монет)
+  const buyCoinsButton = document.getElementById("buyCoinsButton");
+  const buyCoinsButton2 = document.getElementById("buyCoinsButton2");
+
+  if (buyCoinsButton) {
+    buyCoinsButton.addEventListener("click", () => {
+      const coinsToAdd = parseInt(buyCoinsButton.dataset.amount, 10);
+      currentBalance += coinsToAdd;
+      localStorage.setItem("userBalance", currentBalance); // Сохраняем баланс
+      if (userBalanceElement) {
+        userBalanceElement.textContent = currentBalance; // Обновляем отображение
+      }
+      alert(`Вы успешно купили ${coinsToAdd} монет за 10 звёзд Telegram!`);
+    });
+  }
+
+  if (buyCoinsButton2) {
+    buyCoinsButton2.addEventListener("click", () => {
+      const coinsToAdd = parseInt(buyCoinsButton2.dataset.amount, 10);
+      currentBalance += coinsToAdd;
+      localStorage.setItem("userBalance", currentBalance); // Сохраняем баланс
+      if (userBalanceElement) {
+        userBalanceElement.textContent = currentBalance; // Обновляем отображение
+      }
+      alert(`Вы успешно купили ${coinsToAdd} монет за 20 звёзд Telegram!`);
+    });
+  }
+
   // Логика для страницы "Топ пользователей"
   const topUsersList = document.getElementById("topUsersList");
 
   if (topUsersList) {
-    // Получаем список топ-пользователей из localStorage или задаём начальные значения
     let topUsers = JSON.parse(localStorage.getItem("topUsers")) || [
       { name: "Анна", rating: 120 },
       { name: "Иван", rating: 95 },
