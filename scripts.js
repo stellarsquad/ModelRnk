@@ -49,20 +49,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (completeTaskButton && taskList) {
     completeTaskButton.addEventListener("click", () => {
-      const firstTask = taskList.querySelector("li"); // Берём первое задание
+      const firstTask = taskList.querySelector("li");
       if (firstTask) {
-        const points = parseInt(firstTask.dataset.points, 10); // Получаем баллы задания
+        const points = parseInt(firstTask.dataset.points, 10);
+        const coins = points * 2; // Начисляем монеты за задание (2 монеты за 1 балл рейтинга)
+
         currentRating += points;
-        localStorage.setItem("userRating", currentRating); // Сохраняем рейтинг в localStorage
-        if (ratingValue) {
-          ratingValue.textContent = currentRating; // Обновляем рейтинг на странице
-        }
+        currentBalance += coins;
+
+        // Сохраняем обновлённые данные
+        localStorage.setItem("userRating", currentRating);
+        localStorage.setItem("userBalance", currentBalance);
+
+        // Обновляем отображение
+        if (ratingValue) ratingValue.textContent = currentRating;
+        if (userBalanceElement) userBalanceElement.textContent = currentBalance;
+
         alert(
-          `Вы выполнили задание "${firstTask.textContent}" и получили ${points} баллов!`
+          `Вы выполнили задание "${firstTask.textContent}", получили ${points} баллов рейтинга и ${coins} монет!`
         );
-        firstTask.remove(); // Удаляем выполненное задание из списка
+        firstTask.remove();
       } else {
         alert("Все задания выполнены!");
+      }
+    });
+
+    // Обработчик для клика по заданиям
+    taskList.addEventListener("click", (event) => {
+      const task = event.target.closest("li");
+      if (task) {
+        const points = parseInt(task.dataset.points, 10);
+        const coins = points * 2;
+
+        currentRating += points;
+        currentBalance += coins;
+
+        // Сохраняем обновлённые данные
+        localStorage.setItem("userRating", currentRating);
+        localStorage.setItem("userBalance", currentBalance);
+
+        // Обновляем отображение
+        if (ratingValue) ratingValue.textContent = currentRating;
+        if (userBalanceElement) userBalanceElement.textContent = currentBalance;
+
+        alert(
+          `Вы выполнили задание "${task.textContent}", получили ${points} баллов рейтинга и ${coins} монет!`
+        );
+        task.remove();
       }
     });
 
