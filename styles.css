@@ -125,3 +125,39 @@ nav a:hover {
 .top-users li:hover {
   background-color: #f1f1f1;
 }
+
+/* Блок баланса */
+.balance-container {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 400px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для блока */
+}
+
+.balance-container p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.balance-container button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.balance-container button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

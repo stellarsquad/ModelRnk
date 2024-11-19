@@ -8,7 +8,12 @@
   </head>
   <body>
     <h1>Ваш баланс</h1>
-    <p>Баланс: <strong>100 монет</strong></p>
+
+    <div class="balance-container">
+      <!-- Строка с текущим балансом -->
+      <p>Текущий баланс: <span id="userBalance">0</span> монет</p>
+      <button id="earnCoinsButton">Получить монеты</button>
+    </div>
 
     <nav>
       <a href="main.html">Главная</a>
@@ -17,5 +22,7 @@
       <a href="rating.html">Рейтинг</a>
       <a href="balance.html" class="active">Баланс</a>
     </nav>
+
+    <script src="scripts.js"></script>
   </body>
 </html>
