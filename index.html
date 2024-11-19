@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ModelRnk</title>
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="scripts.js"></script>
   </head>
   <body>
     <h1>Добро пожаловать в ModelRnk</h1>
-    <button id="loginButton">Войти через Telegram</button>
+    <button id="telegramLoginButton">Войти через Telegram</button>
+
+    <script>
+      // Временно перенаправляем на главную страницу
+      document
+        .getElementById("telegramLoginButton")
+        .addEventListener("click", () => {
+          window.location.href = "main.html"; // Перенаправляем на main.html
+        });
+    </script>
   </body>
 </html>
