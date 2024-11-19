@@ -1,46 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Загружаем текущий рейтинг пользователя
+  // Логика работы с рейтингом
   const ratingValue = document.getElementById("ratingValue");
   let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
 
-  // Отображаем рейтинг на странице
   if (ratingValue) {
     ratingValue.textContent = currentRating;
   }
 
-  // Логика для страницы "Топ пользователей"
-  const topUsersList = document.getElementById("topUsersList");
+  // Логика работы с балансом
+  const userBalanceElement = document.getElementById("userBalance");
+  let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
 
-  if (topUsersList) {
-    // Массив пользователей
-    let topUsers = JSON.parse(localStorage.getItem("topUsers")) || [
-      { name: "Анна", rating: 120 },
-      { name: "Иван", rating: 95 },
-      { name: "Мария", rating: 80 },
-      { name: "Пётр", rating: 75 },
-      { name: "Ольга", rating: 65 },
-    ];
-
-    // Добавляем текущего пользователя в топ
-    const currentUserIndex = topUsers.findIndex((user) => user.name === "Вы");
-    if (currentUserIndex === -1) {
-      topUsers.push({ name: "Вы", rating: currentRating });
-    } else {
-      topUsers[currentUserIndex].rating = currentRating; // Обновляем рейтинг текущего пользователя
-    }
-
-    // Сортируем по рейтингу
-    topUsers.sort((a, b) => b.rating - a.rating);
-
-    // Сохраняем обновлённый список в localStorage
-    localStorage.setItem("topUsers", JSON.stringify(topUsers));
-
-    // Отображаем пользователей в списке
-    topUsers.forEach((user, index) => {
-      const li = document.createElement("li");
-      li.textContent = `${index + 1}. ${user.name} — ${user.rating} баллов`;
-      topUsersList.appendChild(li);
-    });
+  if (userBalanceElement) {
+    userBalanceElement.textContent = currentBalance;
   }
 
   // Логика выполнения заданий
@@ -98,21 +70,40 @@ document.addEventListener("DOMContentLoaded", () => {
         task.remove();
       }
     });
+  }
 
-    taskList.addEventListener("click", (event) => {
-      const task = event.target.closest("li");
-      if (task) {
-        const points = parseInt(task.dataset.points, 10);
-        currentRating += points;
-        localStorage.setItem("userRating", currentRating); // Сохраняем рейтинг в localStorage
-        if (ratingValue) {
-          ratingValue.textContent = currentRating; // Обновляем рейтинг
-        }
-        alert(
-          `Вы выполнили задание "${task.textContent}" и получили ${points} баллов!`
-        );
-        task.remove(); // Удаляем задание
-      }
+  // Логика для страницы "Топ пользователей"
+  const topUsersList = document.getElementById("topUsersList");
+
+  if (topUsersList) {
+    // Получаем список топ-пользователей из localStorage или задаём начальные значения
+    let topUsers = JSON.parse(localStorage.getItem("topUsers")) || [
+      { name: "Анна", rating: 120 },
+      { name: "Иван", rating: 95 },
+      { name: "Мария", rating: 80 },
+      { name: "Пётр", rating: 75 },
+      { name: "Ольга", rating: 65 },
+    ];
+
+    // Добавляем текущего пользователя в список
+    const currentUserIndex = topUsers.findIndex((user) => user.name === "Вы");
+    if (currentUserIndex === -1) {
+      topUsers.push({ name: "Вы", rating: currentRating });
+    } else {
+      topUsers[currentUserIndex].rating = currentRating; // Обновляем рейтинг текущего пользователя
+    }
+
+    // Сортируем пользователей по рейтингу
+    topUsers.sort((a, b) => b.rating - a.rating);
+
+    // Сохраняем обновлённый список в localStorage
+    localStorage.setItem("topUsers", JSON.stringify(topUsers));
+
+    // Отображаем пользователей в списке
+    topUsers.forEach((user, index) => {
+      const li = document.createElement("li");
+      li.textContent = `${index + 1}. ${user.name} — ${user.rating} баллов`;
+      topUsersList.appendChild(li);
     });
   }
 });
