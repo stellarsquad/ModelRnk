@@ -151,4 +151,39 @@ document.addEventListener("DOMContentLoaded", () => {
       topUsersList.appendChild(li);
     });
   }
+  // Обновление данных на главной странице
+  const profileName = document.getElementById("profileName");
+  const profilePhoto = document.getElementById("profilePhoto");
+  const ratingValue = document.getElementById("ratingValue");
+  const userBalanceElement = document.getElementById("userBalance");
+
+  let currentName = localStorage.getItem("userName") || "Имя пользователя";
+  let currentPhoto =
+    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
+  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
+  let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
+
+  // Устанавливаем данные при загрузке страницы
+  profileName.textContent = currentName;
+  profilePhoto.src = currentPhoto;
+  ratingValue.textContent = currentRating;
+  userBalanceElement.textContent = currentBalance;
+
+  // Обработчик для редактирования профиля
+  const editProfileButton = document.getElementById("editProfileButton");
+  editProfileButton.addEventListener("click", () => {
+    const newName = prompt("Введите новое имя:", currentName);
+    if (newName) {
+      currentName = newName;
+      profileName.textContent = newName;
+      localStorage.setItem("userName", newName);
+    }
+
+    const newPhotoUrl = prompt("Введите URL нового фото:", currentPhoto);
+    if (newPhotoUrl) {
+      currentPhoto = newPhotoUrl;
+      profilePhoto.src = newPhotoUrl;
+      localStorage.setItem("userPhoto", newPhotoUrl);
+    }
+  });
 });
