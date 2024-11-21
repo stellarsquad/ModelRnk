@@ -10,20 +10,29 @@
     <h1>Моя анкета</h1>
 
     <div class="profile">
-      <img
-        id="profilePhoto"
-        src="https://via.placeholder.com/150"
-        alt="Фото профиля"
-      />
+      <div class="avatar-container">
+        <img
+          id="profilePhoto"
+          src="https://via.placeholder.com/150"
+          alt="Фото профиля"
+        />
+        <label for="uploadAvatar" class="upload-icon">+</label>
+        <input
+          type="file"
+          id="uploadAvatar"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
       <h2>
         <span id="profileName" contenteditable="false">Имя пользователя</span>
         <span id="editNameIcon" class="edit-icon">✏️</span>
       </h2>
       <p>Рейтинг: <span id="ratingValue">0</span></p>
       <p>Баланс: <span id="userBalance">0</span> монет</p>
-      <button id="editProfileButton">Редактировать профиль</button>
     </div>
 
+    <!-- Навигационное меню -->
     <nav>
       <a href="main.html" class="active">Главная</a>
       <a href="tasks.html">Задания</a>
@@ -31,6 +40,9 @@
       <a href="rating.html">Рейтинг</a>
       <a href="balance.html">Баланс</a>
     </nav>
+
+    <!-- Секция Топ -->
+    <ul id="topUsersList"></ul>
 
     <script src="scripts.js"></script>
   </body>
