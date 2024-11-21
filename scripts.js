@@ -18,39 +18,34 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
   let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const profileName = document.getElementById("profileName");
-    const editNameIcon = document.getElementById("editNameIcon");
+  // Установка начальных данных
+  profileName.textContent = currentName;
+  profilePhoto.src = currentPhoto;
+  if (ratingValue) ratingValue.textContent = currentRating;
+  if (userBalanceElement) userBalanceElement.textContent = currentBalance;
 
-    // Загружаем имя пользователя из localStorage или используем значение по умолчанию
-    let currentName = localStorage.getItem("userName") || "Имя пользователя";
-    profileName.textContent = currentName;
+  // --- Редактирование имени ---
+  editNameIcon.addEventListener("click", () => {
+    profileName.setAttribute("contenteditable", "true");
+    profileName.focus(); // Устанавливаем фокус на имя
+    editNameIcon.style.display = "none"; // Скрываем значок редактирования
+  });
 
-    // Функция для активации редактирования имени
-    editNameIcon.addEventListener("click", () => {
-      profileName.setAttribute("contenteditable", "true");
-      profileName.focus(); // Устанавливаем фокус на имя
-      editNameIcon.style.display = "none"; // Скрываем значок редактирования
-    });
+  profileName.addEventListener("blur", () => {
+    const newName = profileName.textContent.trim();
+    if (newName && newName !== currentName) {
+      currentName = newName;
+      localStorage.setItem("userName", currentName); // Сохраняем новое имя
+    }
+    profileName.setAttribute("contenteditable", "false");
+    editNameIcon.style.display = "inline"; // Показываем значок обратно
+  });
 
-    // Функция завершения редактирования имени
-    profileName.addEventListener("blur", () => {
-      const newName = profileName.textContent.trim();
-      if (newName && newName !== currentName) {
-        currentName = newName;
-        localStorage.setItem("userName", currentName); // Сохраняем новое имя в localStorage
-      }
-      profileName.setAttribute("contenteditable", "false");
-      editNameIcon.style.display = "inline"; // Показываем значок редактирования обратно
-    });
-
-    // Обрабатываем нажатие Enter, чтобы завершить редактирование
-    profileName.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault(); // Предотвращаем добавление новой строки
-        profileName.blur(); // Завершаем редактирование
-      }
-    });
+  profileName.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Предотвращаем добавление новой строки
+      profileName.blur(); // Завершаем редактирование
+    }
   });
 
   // --- Загрузка нового аватара ---
