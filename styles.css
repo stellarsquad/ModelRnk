@@ -1,4 +1,4 @@
-/* Общие стили */
+/* Основные стили */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,47 +7,7 @@ body {
   text-align: center;
 }
 
-h1 {
-  font-size: 24px;
-  margin-top: 20px;
-  color: #333;
-}
-
-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #007bff;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 10px 0;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-nav a {
-  flex: 1;
-  text-align: center;
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 0;
-  transition: background-color 0.3s ease;
-}
-
-nav a:hover {
-  background-color: #0056b3;
-  text-decoration: underline;
-  border-radius: 5px;
-}
-
-nav a.active {
-  background-color: #0056b3;
-  border-radius: 5px;
-}
-
-/* Главная страница */
+/* Контейнер для профиля */
 .profile {
   margin: 20px auto;
   width: 300px;
@@ -56,289 +16,20 @@ nav a.active {
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.profile img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.profile button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.profile button:hover {
-  background-color: #0056b3;
-}
-
-/* Задания */
-.tasks {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 400px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.tasks ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.tasks li {
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.tasks li:hover {
-  background-color: #f1f1f1;
-}
-
-.tasks button {
-  margin-top: 15px;
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tasks button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Топ пользователей */
-.top-users {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 400px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.top-users ul {
-  list-style: none;
-  padding: 0;
-}
-
-.top-users li {
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.top-users li:nth-child(1) {
-  background-color: #ffd700; /* Золотой цвет для первого места */
-}
-
-.top-users li:nth-child(2) {
-  background-color: #c0c0c0; /* Серебряный цвет для второго места */
-}
-
-.top-users li:nth-child(3) {
-  background-color: #cd7f32; /* Бронзовый цвет для третьего места */
-}
-
-.top-users li:hover {
-  background-color: #f1f1f1;
-}
-
-/* Рейтинг */
-.rating-container {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 400px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Баланс */
-.balance-container {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 400px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.balance-container p {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-.balance-container button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.balance-container button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Покупка монет */
-.purchase-container {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 400px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.purchase-container h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.purchase-container p {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.purchase-container button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.purchase-container button:hover {
-  background-color: #218838;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Главная страница */
-.profile {
-  margin: 20px auto;
-  width: 300px;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.profile h2 {
-  font-size: 20px;
-  margin: 10px 0;
-  color: #333;
-}
-
-.profile p {
-  font-size: 16px;
-  margin: 5px 0;
-  color: #666;
-}
-
-.profile button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.profile button:hover {
-  background-color: #0056b3;
-}
-
-/* Значок "изменить" */
-.edit-icon {
-  font-size: 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  color: #007bff;
-  transition: opacity 0.3s, transform 0.2s;
-}
-
-.edit-icon:hover {
-  opacity: 0.8;
-  transform: scale(1.2);
-}
-
-/* Редактируемое поле (при активном редактировании) */
-#profileName[contenteditable="true"] {
-  border-bottom: 1px solid #007bff;
-  outline: none;
-  padding: 2px;
-  margin-right: 5px;
-}
-
-/* Контейнер для аватарки */
+/* Аватарка */
 .avatar-container {
   position: relative;
   display: inline-block;
+  margin-bottom: 10px;
+}
+
+.avatar-container img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
 }
 
 /* Кнопка "+" для загрузки нового аватара */
@@ -363,10 +54,19 @@ nav a.active {
   transform: scale(1.1);
 }
 
-/* Значок "изменить" */
+/* Имя пользователя */
+.profile h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Значок "редактировать" */
 .edit-icon {
   font-size: 16px;
-  margin-left: 10px;
   cursor: pointer;
   color: #007bff;
   transition: opacity 0.3s, transform 0.2s;
@@ -375,6 +75,81 @@ nav a.active {
 .edit-icon:hover {
   opacity: 0.8;
   transform: scale(1.2);
+}
+
+/* Поле имени при редактировании */
+#profileName[contenteditable="true"] {
+  border-bottom: 1px solid #007bff;
+  outline: none;
+  padding: 2px;
+}
+
+/* Рейтинг и баланс */
+.profile p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Кнопки */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Задания */
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+#taskList li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#taskList li:hover {
+  background-color: #f4f4f4;
+}
+
+/* Навигационное меню */
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #007bff;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+nav a.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 /* Топ пользователей */
@@ -388,4 +163,17 @@ nav a.active {
   padding: 10px;
   font-size: 16px;
   border-bottom: 1px solid #ccc;
+}
+
+/* Баланс */
+#userBalance {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Секция заголовка */
+h1 {
+  font-size: 28px;
+  margin: 20px 0;
+  color: #333;
 }
