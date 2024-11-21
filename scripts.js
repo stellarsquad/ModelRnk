@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Элементы на главной странице
+  const profileName = document.getElementById("profileName");
+  const editNameIcon = document.getElementById("editNameIcon");
+  const profilePhoto = document.getElementById("profilePhoto");
+  const uploadAvatar = document.getElementById("uploadAvatar");
+
+  // Общие элементы для всех вкладок
+  const ratingValue = document.getElementById("ratingValue");
   const userBalanceElement = document.getElementById("userBalance");
   const taskList = document.getElementById("taskList");
   const completeTaskButton = document.getElementById("completeTaskButton");
@@ -7,8 +15,60 @@ document.addEventListener("DOMContentLoaded", () => {
   const buyCoinsButton2 = document.getElementById("buyCoinsButton2");
   const topUsersList = document.getElementById("topUsersList");
 
+  // Сохраненные данные
+  let currentName = localStorage.getItem("userName") || "Имя пользователя";
+  let currentPhoto =
+    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
   let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
   let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
+
+  // --- Главная страница: Редактирование имени ---
+  if (profileName && editNameIcon) {
+    profileName.textContent = currentName;
+
+    editNameIcon.addEventListener("click", () => {
+      profileName.setAttribute("contenteditable", "true");
+      profileName.focus(); // Устанавливаем фокус на имя
+      editNameIcon.style.display = "none"; // Скрываем значок редактирования
+    });
+
+    profileName.addEventListener("blur", () => {
+      const newName = profileName.textContent.trim();
+      if (newName && newName !== currentName) {
+        currentName = newName;
+        localStorage.setItem("userName", currentName); // Сохраняем новое имя
+      }
+      profileName.setAttribute("contenteditable", "false");
+      editNameIcon.style.display = "inline"; // Показываем значок обратно
+    });
+
+    profileName.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault(); // Предотвращаем добавление новой строки
+        profileName.blur(); // Завершаем редактирование
+      }
+    });
+  }
+
+  // --- Главная страница: Загрузка нового аватара ---
+  if (profilePhoto && uploadAvatar) {
+    profilePhoto.src = currentPhoto;
+
+    uploadAvatar.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const newPhotoUrl = e.target.result;
+          currentPhoto = newPhotoUrl;
+          profilePhoto.src = newPhotoUrl;
+          localStorage.setItem("userPhoto", newPhotoUrl);
+          alert("Аватар успешно обновлён!");
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
 
   // --- Работа с заданиями ---
   if (taskList && completeTaskButton) {
@@ -44,15 +104,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Работа с балансом ---
-  if (userBalanceElement && earnCoinsButton) {
+  if (userBalanceElement) {
     userBalanceElement.textContent = currentBalance;
 
-    earnCoinsButton.addEventListener("click", () => {
-      currentBalance += 50;
-      localStorage.setItem("userBalance", currentBalance);
-      userBalanceElement.textContent = currentBalance;
-      alert("Вы получили 50 монет!");
-    });
+    if (earnCoinsButton) {
+      earnCoinsButton.addEventListener("click", () => {
+        currentBalance += 50;
+        localStorage.setItem("userBalance", currentBalance);
+        userBalanceElement.textContent = currentBalance;
+        alert("Вы получили 50 монет!");
+      });
+    }
 
     if (buyCoinsButton) {
       buyCoinsButton.addEventListener("click", () => {
@@ -82,6 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
       { name: "Пётр", rating: 75 },
       { name: "Ольга", rating: 65 },
     ];
+
+    const currentUserIndex = topUsers.findIndex((user) => user.name === "Вы");
+    if (currentUserIndex === -1) {
+      topUsers.push({ name: "Вы", rating: currentRating });
+    } else {
+      topUsers[currentUserIndex].rating = currentRating;
+    }
 
     topUsers.sort((a, b) => b.rating - a.rating);
 
