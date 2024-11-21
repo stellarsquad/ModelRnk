@@ -1,40 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Логика работы с рейтингом
+  // --- Главная страница: Работа с профилем ---
+  const profileName = document.getElementById("profileName");
+  const profilePhoto = document.getElementById("profilePhoto");
   const ratingValue = document.getElementById("ratingValue");
-  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
-
-  if (ratingValue) {
-    ratingValue.textContent = currentRating;
-  }
-
-  // Логика работы с балансом
   const userBalanceElement = document.getElementById("userBalance");
+
+  let currentName = localStorage.getItem("userName") || "Имя пользователя";
+  let currentPhoto =
+    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
+  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
   let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
 
-  if (userBalanceElement) {
-    userBalanceElement.textContent = currentBalance;
-  }
+  // Устанавливаем данные при загрузке страницы
+  if (profileName) profileName.textContent = currentName;
+  if (profilePhoto) profilePhoto.src = currentPhoto;
+  if (ratingValue) ratingValue.textContent = currentRating;
+  if (userBalanceElement) userBalanceElement.textContent = currentBalance;
 
-  // Логика для кнопки "Получить монеты"
-  const earnCoinsButton = document.getElementById("earnCoinsButton");
-  if (earnCoinsButton) {
-    earnCoinsButton.addEventListener("click", () => {
-      const earnedCoins = 50; // Количество монет за нажатие
-      currentBalance += earnedCoins;
-
-      // Сохраняем обновлённый баланс
-      localStorage.setItem("userBalance", currentBalance);
-
-      // Обновляем отображение баланса
-      if (userBalanceElement) {
-        userBalanceElement.textContent = currentBalance;
+  // Обработчик для редактирования профиля
+  const editProfileButton = document.getElementById("editProfileButton");
+  if (editProfileButton) {
+    editProfileButton.addEventListener("click", () => {
+      const newName = prompt("Введите новое имя:", currentName);
+      if (newName) {
+        currentName = newName;
+        profileName.textContent = newName;
+        localStorage.setItem("userName", newName);
       }
 
-      alert(`Вы получили ${earnedCoins} монет!`);
+      const newPhotoUrl = prompt("Введите URL нового фото:", currentPhoto);
+      if (newPhotoUrl) {
+        currentPhoto = newPhotoUrl;
+        profilePhoto.src = newPhotoUrl;
+        localStorage.setItem("userPhoto", newPhotoUrl);
+      }
     });
   }
 
-  // Логика для выполнения заданий
+  // --- Работа с заданиями ---
   const taskList = document.getElementById("taskList");
   const completeTaskButton = document.getElementById("completeTaskButton");
 
@@ -90,9 +93,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Логика для пополнения баланса (покупка монет)
+  // --- Баланс: Логика пополнения ---
+  const earnCoinsButton = document.getElementById("earnCoinsButton");
   const buyCoinsButton = document.getElementById("buyCoinsButton");
   const buyCoinsButton2 = document.getElementById("buyCoinsButton2");
+
+  if (earnCoinsButton) {
+    earnCoinsButton.addEventListener("click", () => {
+      const earnedCoins = 50; // Количество монет за нажатие
+      currentBalance += earnedCoins;
+
+      // Сохраняем обновлённый баланс
+      localStorage.setItem("userBalance", currentBalance);
+
+      // Обновляем отображение баланса
+      if (userBalanceElement) {
+        userBalanceElement.textContent = currentBalance;
+      }
+
+      alert(`Вы получили ${earnedCoins} монет!`);
+    });
+  }
 
   if (buyCoinsButton) {
     buyCoinsButton.addEventListener("click", () => {
@@ -118,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Логика для страницы "Топ пользователей"
+  // --- Топ пользователей ---
   const topUsersList = document.getElementById("topUsersList");
 
   if (topUsersList) {
@@ -151,39 +172,4 @@ document.addEventListener("DOMContentLoaded", () => {
       topUsersList.appendChild(li);
     });
   }
-  // Обновление данных на главной странице
-  const profileName = document.getElementById("profileName");
-  const profilePhoto = document.getElementById("profilePhoto");
-  const ratingValue = document.getElementById("ratingValue");
-  const userBalanceElement = document.getElementById("userBalance");
-
-  let currentName = localStorage.getItem("userName") || "Имя пользователя";
-  let currentPhoto =
-    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
-  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
-  let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
-
-  // Устанавливаем данные при загрузке страницы
-  profileName.textContent = currentName;
-  profilePhoto.src = currentPhoto;
-  ratingValue.textContent = currentRating;
-  userBalanceElement.textContent = currentBalance;
-
-  // Обработчик для редактирования профиля
-  const editProfileButton = document.getElementById("editProfileButton");
-  editProfileButton.addEventListener("click", () => {
-    const newName = prompt("Введите новое имя:", currentName);
-    if (newName) {
-      currentName = newName;
-      profileName.textContent = newName;
-      localStorage.setItem("userName", newName);
-    }
-
-    const newPhotoUrl = prompt("Введите URL нового фото:", currentPhoto);
-    if (newPhotoUrl) {
-      currentPhoto = newPhotoUrl;
-      profilePhoto.src = newPhotoUrl;
-      localStorage.setItem("userPhoto", newPhotoUrl);
-    }
-  });
 });
