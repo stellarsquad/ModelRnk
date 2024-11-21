@@ -69,6 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
       { name: "Ольга", rating: 65 },
     ];
 
+    const currentRating = parseInt(
+      localStorage.getItem("userRating") || "0",
+      10
+    );
     const currentUserIndex = topUsers.findIndex((user) => user.name === "Вы");
     if (currentUserIndex === -1) {
       topUsers.push({ name: "Вы", rating: currentRating });
