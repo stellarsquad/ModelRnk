@@ -1,53 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const profileName = document.getElementById("profileName");
-  const profilePhoto = document.getElementById("profilePhoto");
-  const ratingValue = document.getElementById("ratingValue");
-  const userBalanceElement = document.getElementById("userBalance");
-
-  const editProfileButton = document.getElementById("editProfileButton");
-  const editProfileForm = document.getElementById("editProfileForm");
-  const saveProfileButton = document.getElementById("saveProfileButton");
-  const newNameInput = document.getElementById("newName");
-  const newPhotoUrlInput = document.getElementById("newPhotoUrl");
+  const editNameIcon = document.getElementById("editNameIcon");
 
   let currentName = localStorage.getItem("userName") || "Имя пользователя";
-  let currentPhoto =
-    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
-  let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
-  let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
 
-  // Устанавливаем данные при загрузке страницы
+  // Устанавливаем имя при загрузке страницы
   if (profileName) profileName.textContent = currentName;
-  if (profilePhoto) profilePhoto.src = currentPhoto;
-  if (ratingValue) ratingValue.textContent = currentRating;
-  if (userBalanceElement) userBalanceElement.textContent = currentBalance;
 
-  // Показать форму редактирования профиля
-  editProfileButton.addEventListener("click", () => {
-    editProfileForm.style.display = "block";
-    newNameInput.value = currentName;
-    newPhotoUrlInput.value = currentPhoto;
-  });
-
-  // Сохранение изменений профиля
-  saveProfileButton.addEventListener("click", () => {
-    const newName = newNameInput.value.trim();
-    const newPhotoUrl = newPhotoUrlInput.value.trim();
-
-    if (newName) {
-      currentName = newName;
+  // Обработчик для редактирования имени
+  editNameIcon.addEventListener("click", () => {
+    const newName = prompt("Введите новое имя:", currentName);
+    if (newName && newName.trim() !== "") {
+      currentName = newName.trim();
       profileName.textContent = currentName;
       localStorage.setItem("userName", currentName);
     }
-
-    if (newPhotoUrl) {
-      currentPhoto = newPhotoUrl;
-      profilePhoto.src = currentPhoto;
-      localStorage.setItem("userPhoto", currentPhoto);
-    }
-
-    alert("Изменения успешно сохранены!");
-    editProfileForm.style.display = "none";
   });
 });
 

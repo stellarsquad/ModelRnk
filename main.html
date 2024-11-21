@@ -15,17 +15,18 @@
         src="https://via.placeholder.com/150"
         alt="Фото профиля"
       />
-      <h2 id="profileName">Имя пользователя</h2>
+      <h2>
+        <span id="profileName">Имя пользователя</span>
+        <img
+          id="editNameIcon"
+          src="https://img.icons8.com/ios-glyphs/30/000000/edit--v1.png"
+          alt="Изменить"
+          class="edit-icon"
+        />
+      </h2>
       <p>Рейтинг: <span id="ratingValue">0</span></p>
       <p>Баланс: <span id="userBalance">0</span> монет</p>
       <button id="editProfileButton">Редактировать профиль</button>
-
-      <!-- Форма для редактирования -->
-      <div id="editProfileForm" style="display: none; margin-top: 15px">
-        <input type="text" id="newName" placeholder="Новое имя" />
-        <input type="text" id="newPhotoUrl" placeholder="URL нового фото" />
-        <button id="saveProfileButton">Сохранить</button>
-      </div>
     </div>
 
     <nav>
