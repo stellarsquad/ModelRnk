@@ -326,3 +326,11 @@ nav a.active {
   opacity: 0.8;
   transform: scale(1.2);
 }
+
+/* Редактируемое поле (при активном редактировании) */
+#profileName[contenteditable="true"] {
+  border-bottom: 1px solid #007bff;
+  outline: none;
+  padding: 2px;
+  margin-right: 5px;
+}

@@ -5,15 +5,31 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentName = localStorage.getItem("userName") || "Имя пользователя";
 
   // Устанавливаем имя при загрузке страницы
-  if (profileName) profileName.textContent = currentName;
+  profileName.textContent = currentName;
 
-  // Обработчик для редактирования имени
+  // При клике на значок активируем редактирование
   editNameIcon.addEventListener("click", () => {
-    const newName = prompt("Введите новое имя:", currentName);
-    if (newName && newName.trim() !== "") {
-      currentName = newName.trim();
-      profileName.textContent = currentName;
-      localStorage.setItem("userName", currentName);
+    profileName.setAttribute("contenteditable", "true");
+    profileName.focus(); // Устанавливаем фокус на элемент
+    editNameIcon.style.display = "none"; // Скрываем значок во время редактирования
+  });
+
+  // Сохраняем имя при потере фокуса
+  profileName.addEventListener("blur", () => {
+    const newName = profileName.textContent.trim();
+    if (newName && newName !== currentName) {
+      currentName = newName;
+      localStorage.setItem("userName", currentName); // Сохраняем новое имя
+    }
+    profileName.setAttribute("contenteditable", "false"); // Выключаем редактирование
+    editNameIcon.style.display = "inline"; // Показываем значок обратно
+  });
+
+  // Дополнительно: Нажатие Enter завершает редактирование
+  profileName.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Предотвращаем перенос строки
+      profileName.blur(); // Завершаем редактирование
     }
   });
 });
