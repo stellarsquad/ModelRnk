@@ -3,35 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Главная</title>
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <title>ModelRnk - Главная</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- <h1>Моя анкета</h1> -->
-
-    <div class="profile">
+    <!-- Карточка профиля -->
+    <div class="profile-card">
+      <!-- Аватарка -->
       <div class="avatar-container">
         <img
           id="profilePhoto"
           src="https://via.placeholder.com/150"
-          alt="Фото профиля"
+          alt="Аватар"
         />
-        <label for="uploadAvatar" class="upload-icon">+</label>
-        <input
-          type="file"
-          id="uploadAvatar"
-          accept="image/*"
-          style="display: none"
-        />
+        <div class="upload-icon" id="uploadAvatar">+</div>
       </div>
+
+      <!-- Имя пользователя -->
       <h2>
-        <span id="profileName" contenteditable="false">Имя пользователя</span>
-        <span id="editNameIcon" class="edit-icon">✏️</span>
+        <span id="profileName">Имя пользователя</span>
+        <span class="edit-icon" id="editNameIcon">✏️</span>
       </h2>
+
+      <!-- Рейтинг и баланс -->
       <p>Рейтинг: <span id="ratingValue">0</span></p>
       <p>Баланс: <span id="userBalance">0</span> монет</p>
+
+      <!-- Система уровней -->
+      <div class="level-system">
+        <p>Уровень: <span id="userLevel">1</span></p>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
     </div>
 
+    <!-- Навигационное меню -->
     <nav>
       <a href="main.html" class="active">Главная</a>
       <a href="tasks.html">Задания</a>
