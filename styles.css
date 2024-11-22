@@ -124,13 +124,15 @@ body {
 
 /* Навигационное меню */
 nav {
-  height: 60px;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   background-color: #1a1a1a;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  padding: 10px 0;
   border-top: 2px solid #5c305e;
+  z-index: 1000;
 }
 
 nav a {
