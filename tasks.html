@@ -7,13 +7,24 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Ваши задания</h1>
-    <ul id="taskList">
-      <li data-points="10">Опубликовать фото (10 баллов)</li>
-      <li data-points="5">Порекомендовать друга (5 баллов)</li>
-      <li data-points="15">Заполнить анкету полностью (15 баллов)</li>
-    </ul>
-    <button id="completeTaskButton">Выполнить задание</button>
+    <div class="task-container">
+      <h1>Ваши задания</h1>
+      <ul id="taskList" class="task-list">
+        <li class="task-item" data-points="10">
+          Опубликовать фото <span class="task-points">(10 баллов)</span>
+        </li>
+        <li class="task-item" data-points="5">
+          Порекомендовать друга <span class="task-points">(5 баллов)</span>
+        </li>
+        <li class="task-item" data-points="15">
+          Заполнить анкету полностью
+          <span class="task-points">(15 баллов)</span>
+        </li>
+      </ul>
+      <button id="completeTaskButton" class="button-primary">
+        Выполнить задание
+      </button>
+    </div>
 
     <nav>
       <a href="main.html">Главная</a>

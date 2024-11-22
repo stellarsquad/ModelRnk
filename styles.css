@@ -146,3 +146,74 @@ nav a.active {
   font-weight: bold;
   color: #f700ff;
 }
+
+/* Контейнер заданий */
+.task-container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 400px;
+  background: linear-gradient(135deg, #5c305e, #f700ff);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Заголовок заданий */
+.task-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Список заданий */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.task-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #1a1a1a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.task-item:hover {
+  background-color: #f700ff;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.task-points {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Кнопка выполнения задания */
+.button-primary {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #5c305e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-primary:hover {
+  background-color: #f700ff;
+  transform: scale(1.05);
+}
