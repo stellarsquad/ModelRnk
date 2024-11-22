@@ -4,37 +4,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const editNameIcon = document.getElementById("editNameIcon");
   const profilePhoto = document.getElementById("profilePhoto");
   const uploadAvatar = document.getElementById("uploadAvatar");
+
+  // Общие элементы для всех вкладок
   const ratingValue = document.getElementById("ratingValue");
   const userBalanceElement = document.getElementById("userBalance");
   const progressBarElement = document.getElementById("progressBar");
   const userLevelElement = document.getElementById("userLevel");
-
-  // Работа с заданиями
   const taskList = document.getElementById("taskList");
   const completeTaskButton = document.getElementById("completeTaskButton");
-
-  // Работа с балансом
   const earnCoinsButton = document.getElementById("earnCoinsButton");
   const buyCoinsButton = document.getElementById("buyCoinsButton");
   const buyCoinsButton2 = document.getElementById("buyCoinsButton2");
+  const topUsersList = document.getElementById("topUsersList");
 
-  // Переменные для рейтинга, уровня и баланса
+  // Сохранённые данные
+  let currentName = localStorage.getItem("userName") || "Имя пользователя";
+  let currentPhoto =
+    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
   let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
   let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
   const levels = [0, 100, 300, 600, 1000, 1500]; // Границы уровней
 
-  // Инициализация данных из LocalStorage
-  let currentName = localStorage.getItem("userName") || "Имя пользователя";
-  let currentPhoto =
-    localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
-
-  // Установка начальных данных
-  if (profileName) profileName.textContent = currentName;
-  if (profilePhoto) profilePhoto.src = currentPhoto;
-  if (ratingValue) ratingValue.textContent = currentRating;
-  if (userBalanceElement) userBalanceElement.textContent = currentBalance;
-
-  // --- Обновление уровня и прогресса ---
+  // --- Функция для обновления уровня и прогресса ---
   function updateLevel() {
     let userLevel = 1;
     let progress = 0;
@@ -51,16 +42,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Обновляем DOM
     if (userLevelElement) userLevelElement.textContent = userLevel;
     if (progressBarElement) progressBarElement.style.width = `${progress}%`;
   }
 
-  // Инициализация уровня
+  // Инициализация начальных данных
+  if (profileName) profileName.textContent = currentName;
+  if (profilePhoto) profilePhoto.src = currentPhoto;
+  if (ratingValue) ratingValue.textContent = currentRating;
+  if (userBalanceElement) userBalanceElement.textContent = currentBalance;
   updateLevel();
 
   // --- Редактирование имени ---
-  if (editNameIcon) {
+  if (profileName && editNameIcon) {
     editNameIcon.addEventListener("click", () => {
       profileName.setAttribute("contenteditable", "true");
       profileName.focus();
@@ -86,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Загрузка нового аватара ---
-  if (uploadAvatar) {
+  if (profilePhoto && uploadAvatar) {
     uploadAvatar.addEventListener("click", () => {
       const input = document.createElement("input");
       input.type = "file";
@@ -143,30 +137,60 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Работа с балансом ---
-  if (userBalanceElement && earnCoinsButton) {
-    earnCoinsButton.addEventListener("click", () => {
-      currentBalance += 50;
-      localStorage.setItem("userBalance", currentBalance);
-      userBalanceElement.textContent = currentBalance;
-      alert("Вы получили 50 монет!");
-    });
+  if (userBalanceElement) {
+    if (earnCoinsButton) {
+      earnCoinsButton.addEventListener("click", () => {
+        currentBalance += 50;
+        localStorage.setItem("userBalance", currentBalance);
+        userBalanceElement.textContent = currentBalance;
+        alert("Вы получили 50 монет!");
+      });
+    }
+
+    if (buyCoinsButton) {
+      buyCoinsButton.addEventListener("click", () => {
+        currentBalance += 100;
+        localStorage.setItem("userBalance", currentBalance);
+        userBalanceElement.textContent = currentBalance;
+        alert("Вы купили 100 монет!");
+      });
+    }
+
+    if (buyCoinsButton2) {
+      buyCoinsButton2.addEventListener("click", () => {
+        currentBalance += 200;
+        localStorage.setItem("userBalance", currentBalance);
+        userBalanceElement.textContent = currentBalance;
+        alert("Вы купили 200 монет!");
+      });
+    }
   }
 
-  if (buyCoinsButton) {
-    buyCoinsButton.addEventListener("click", () => {
-      currentBalance += 100;
-      localStorage.setItem("userBalance", currentBalance);
-      userBalanceElement.textContent = currentBalance;
-      alert("Вы купили 100 монет!");
-    });
-  }
+  // --- Топ пользователей ---
+  if (topUsersList) {
+    let topUsers = JSON.parse(localStorage.getItem("topUsers")) || [
+      { name: "Анна", rating: 120 },
+      { name: "Иван", rating: 95 },
+      { name: "Мария", rating: 80 },
+      { name: "Пётр", rating: 75 },
+      { name: "Ольга", rating: 65 },
+    ];
 
-  if (buyCoinsButton2) {
-    buyCoinsButton2.addEventListener("click", () => {
-      currentBalance += 200;
-      localStorage.setItem("userBalance", currentBalance);
-      userBalanceElement.textContent = currentBalance;
-      alert("Вы купили 200 монет!");
+    const currentUserIndex = topUsers.findIndex((user) => user.name === "Вы");
+    if (currentUserIndex === -1) {
+      topUsers.push({ name: "Вы", rating: currentRating });
+    } else {
+      topUsers[currentUserIndex].rating = currentRating;
+    }
+
+    topUsers.sort((a, b) => b.rating - a.rating);
+
+    localStorage.setItem("topUsers", JSON.stringify(topUsers));
+
+    topUsers.forEach((user, index) => {
+      const li = document.createElement("li");
+      li.textContent = `${index + 1}. ${user.name} — ${user.rating} баллов`;
+      topUsersList.appendChild(li);
     });
   }
 });
