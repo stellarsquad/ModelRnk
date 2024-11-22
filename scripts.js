@@ -9,11 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressBarElement = document.getElementById("progressBar");
   const userLevelElement = document.getElementById("userLevel");
 
+  // Работа с заданиями
+  const taskList = document.getElementById("taskList");
+  const completeTaskButton = document.getElementById("completeTaskButton");
+
+  // Работа с балансом
+  const earnCoinsButton = document.getElementById("earnCoinsButton");
+  const buyCoinsButton = document.getElementById("buyCoinsButton");
+  const buyCoinsButton2 = document.getElementById("buyCoinsButton2");
+
   // Переменные для рейтинга, уровня и баланса
   let currentRating = parseInt(localStorage.getItem("userRating") || "0", 10);
   let currentBalance = parseInt(localStorage.getItem("userBalance") || "0", 10);
-
-  // Границы уровней
   const levels = [0, 100, 300, 600, 1000, 1500]; // Границы уровней
 
   // Инициализация данных из LocalStorage
@@ -22,63 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("userPhoto") || "https://via.placeholder.com/150";
 
   // Установка начальных данных
-  profileName.textContent = currentName;
-  profilePhoto.src = currentPhoto;
-  ratingValue.textContent = currentRating;
-  userBalanceElement.textContent = currentBalance;
+  if (profileName) profileName.textContent = currentName;
+  if (profilePhoto) profilePhoto.src = currentPhoto;
+  if (ratingValue) ratingValue.textContent = currentRating;
+  if (userBalanceElement) userBalanceElement.textContent = currentBalance;
 
-  // --- Редактирование имени ---
-  editNameIcon.addEventListener("click", () => {
-    profileName.setAttribute("contenteditable", "true");
-    profileName.focus(); // Устанавливаем фокус на имя
-    editNameIcon.style.display = "none"; // Скрываем значок редактирования
-  });
-
-  profileName.addEventListener("blur", () => {
-    const newName = profileName.textContent.trim();
-    if (newName && newName !== currentName) {
-      currentName = newName;
-      localStorage.setItem("userName", currentName); // Сохраняем новое имя
-    }
-    profileName.setAttribute("contenteditable", "false");
-    editNameIcon.style.display = "inline"; // Показываем значок обратно
-  });
-
-  profileName.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault(); // Предотвращаем добавление новой строки
-      profileName.blur(); // Завершаем редактирование
-    }
-  });
-
-  // --- Загрузка нового аватара ---
-  uploadAvatar.addEventListener("click", () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.addEventListener("change", (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const newPhotoUrl = e.target.result;
-          currentPhoto = newPhotoUrl;
-          profilePhoto.src = newPhotoUrl;
-          localStorage.setItem("userPhoto", newPhotoUrl);
-          alert("Аватар успешно обновлён!");
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-    input.click();
-  });
-
-  // Обновление уровня и прогресса
+  // --- Обновление уровня и прогресса ---
   function updateLevel() {
     let userLevel = 1;
     let progress = 0;
 
-    // Рассчитываем уровень пользователя
     for (let i = 0; i < levels.length; i++) {
       if (currentRating >= levels[i]) {
         userLevel = i + 1;
@@ -92,16 +52,81 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Обновляем DOM
-    userLevelElement.textContent = userLevel;
-    progressBarElement.style.width = `${progress}%`;
+    if (userLevelElement) userLevelElement.textContent = userLevel;
+    if (progressBarElement) progressBarElement.style.width = `${progress}%`;
   }
 
   // Инициализация уровня
   updateLevel();
 
-  // --- Пример обновления рейтинга ---
-  const taskList = document.getElementById("taskList");
-  if (taskList) {
+  // --- Редактирование имени ---
+  if (editNameIcon) {
+    editNameIcon.addEventListener("click", () => {
+      profileName.setAttribute("contenteditable", "true");
+      profileName.focus();
+      editNameIcon.style.display = "none";
+    });
+
+    profileName.addEventListener("blur", () => {
+      const newName = profileName.textContent.trim();
+      if (newName && newName !== currentName) {
+        currentName = newName;
+        localStorage.setItem("userName", currentName);
+      }
+      profileName.setAttribute("contenteditable", "false");
+      editNameIcon.style.display = "inline";
+    });
+
+    profileName.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        profileName.blur();
+      }
+    });
+  }
+
+  // --- Загрузка нового аватара ---
+  if (uploadAvatar) {
+    uploadAvatar.addEventListener("click", () => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const newPhotoUrl = e.target.result;
+            currentPhoto = newPhotoUrl;
+            profilePhoto.src = newPhotoUrl;
+            localStorage.setItem("userPhoto", newPhotoUrl);
+            alert("Аватар успешно обновлён!");
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      input.click();
+    });
+  }
+
+  // --- Работа с заданиями ---
+  if (taskList && completeTaskButton) {
+    completeTaskButton.addEventListener("click", () => {
+      const firstTask = taskList.querySelector("li");
+      if (firstTask) {
+        const points = parseInt(firstTask.dataset.points, 10);
+        currentRating += points;
+
+        localStorage.setItem("userRating", currentRating);
+        if (ratingValue) ratingValue.textContent = currentRating;
+        updateLevel();
+        alert(`Вы выполнили задание и получили ${points} баллов!`);
+        firstTask.remove();
+      } else {
+        alert("Все задания выполнены!");
+      }
+    });
+
     taskList.addEventListener("click", (event) => {
       const task = event.target.closest("li");
       if (task) {
@@ -109,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
         currentRating += points;
 
         localStorage.setItem("userRating", currentRating);
-        ratingValue.textContent = currentRating;
-        updateLevel(); // Обновляем уровень
+        if (ratingValue) ratingValue.textContent = currentRating;
+        updateLevel();
         alert(`Вы выполнили задание и получили ${points} баллов!`);
         task.remove();
       }
@@ -118,10 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Работа с балансом ---
-  const earnCoinsButton = document.getElementById("earnCoinsButton");
-  const buyCoinsButton = document.getElementById("buyCoinsButton");
-
-  if (earnCoinsButton) {
+  if (userBalanceElement && earnCoinsButton) {
     earnCoinsButton.addEventListener("click", () => {
       currentBalance += 50;
       localStorage.setItem("userBalance", currentBalance);
@@ -136,6 +158,15 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("userBalance", currentBalance);
       userBalanceElement.textContent = currentBalance;
       alert("Вы купили 100 монет!");
+    });
+  }
+
+  if (buyCoinsButton2) {
+    buyCoinsButton2.addEventListener("click", () => {
+      currentBalance += 200;
+      localStorage.setItem("userBalance", currentBalance);
+      userBalanceElement.textContent = currentBalance;
+      alert("Вы купили 200 монет!");
     });
   }
 });
