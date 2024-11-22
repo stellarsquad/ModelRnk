@@ -3,9 +3,24 @@ body {
   font-family: "Roboto", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a; /* Фон страницы */
+  background: linear-gradient(-45deg, #5c305e, #f700ff, #1a1a1a, #ffffff);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
   color: #ffffff; /* Основной текст */
   text-align: center;
+}
+
+/* Анимация градиента */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Карточка профиля */
