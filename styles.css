@@ -3,31 +3,25 @@ body {
   font-family: "Roboto", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a; /* Однотонный фон */
+  background-color: #1a1a1a; /* Фон страницы */
   color: #ffffff; /* Основной текст */
   text-align: center;
-}
-
-/* Анимация градиента */
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  height: 100vh; /* Устанавливаем высоту для экрана */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Карточка профиля */
 .profile-card {
-  margin: 50px auto;
-  width: 320px;
+  flex-grow: 1; /* Занимает всё доступное пространство */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
   padding: 20px;
-  background-color: #5c305e; /* Фон карточки */
-  border-radius: 15px;
+  background: linear-gradient(135deg, #5c305e, #f700ff); /* Градиентный фон */
+  border-radius: 0 0 20px 20px; /* Скругляем только нижние углы */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Тень */
   text-align: center;
 }
@@ -44,6 +38,11 @@ body {
   height: 150px;
   border-radius: 50%;
   border: 3px solid #f700ff;
+  transition: transform 0.2s ease;
+}
+
+.avatar-container img:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
 }
 
 /* Кнопка "+" для загрузки нового аватара */
@@ -60,12 +59,12 @@ body {
   line-height: 35px;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .upload-icon:hover {
-  background-color: #5c305e;
-  transform: scale(1.1);
+  transform: scale(1.2);
+  box-shadow: 0px 4px 10px rgba(247, 0, 255, 0.5);
 }
 
 /* Имя пользователя */
@@ -77,6 +76,7 @@ body {
   align-items: center;
   gap: 5px;
   color: #ffffff;
+  animation: fadeIn 1s ease; /* Плавное появление */
 }
 
 /* Значок "редактировать" */
@@ -92,13 +92,6 @@ body {
   transform: scale(1.2);
 }
 
-/* Поле имени при редактировании */
-#profileName[contenteditable="true"] {
-  border-bottom: 1px solid #f700ff;
-  outline: none;
-  padding: 2px;
-}
-
 /* Статистика: Рейтинг и Баланс */
 .profile-card .stats {
   margin: 20px 0;
@@ -111,58 +104,32 @@ body {
   color: #ffffff;
 }
 
-/* Кнопки */
-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #f700ff;
-  color: #1a1a1a;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 10px;
-}
-
-button:hover {
+/* Прогресс-бар */
+.progress-bar-container {
+  width: 80%;
+  height: 20px;
   background-color: #5c305e;
-  color: #ffffff;
-  transform: scale(1.05);
+  border-radius: 10px;
+  margin: 15px auto;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Задания */
-#taskList {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-#taskList li {
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #5c305e;
-  border: 1px solid #f700ff;
-  border-radius: 5px;
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#taskList li:hover {
+.progress-bar {
+  height: 100%;
   background-color: #f700ff;
-  color: #1a1a1a;
+  width: 0%; /* Динамическое значение */
+  transition: width 0.3s ease-in-out;
 }
 
 /* Навигационное меню */
 nav {
-  position: fixed;
-  bottom: 0;
+  height: 60px;
   width: 100%;
   background-color: #1a1a1a;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  align-items: center;
   border-top: 2px solid #5c305e;
 }
 
@@ -175,32 +142,5 @@ nav a {
 nav a.active {
   text-decoration: underline;
   font-weight: bold;
-  color: #f700ff;
-}
-
-/* Топ пользователей */
-#topUsersList {
-  margin-top: 20px;
-  list-style: none;
-  padding: 0;
-  color: #ffffff;
-}
-
-#topUsersList li {
-  padding: 10px;
-  font-size: 16px;
-  border-bottom: 1px solid #5c305e;
-}
-
-/* Баланс */
-#userBalance {
-  font-weight: bold;
-  color: #ffffff;
-}
-
-/* Заголовки */
-h1 {
-  font-size: 28px;
-  margin: 20px 0;
   color: #f700ff;
 }
