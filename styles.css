@@ -1,9 +1,10 @@
-/* Основные стили */
+/* Общие стили */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #1a1a1a; /* Фон страницы */
+  color: #ffffff; /* Основной текст */
   text-align: center;
 }
 
@@ -12,9 +13,9 @@ body {
   margin: 20px auto;
   width: 300px;
   padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #5c305e; /* Фон профиля */
+  border: 2px solid #f700ff; /* Акцентная рамка */
+  border-radius: 10px;
   text-align: center;
 }
 
@@ -29,7 +30,7 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 2px solid #007bff;
+  border: 2px solid #f700ff;
 }
 
 /* Кнопка "+" для загрузки нового аватара */
@@ -39,8 +40,8 @@ body {
   right: -10px;
   width: 30px;
   height: 30px;
-  background-color: #007bff;
-  color: white;
+  background-color: #f700ff;
+  color: #1a1a1a;
   font-size: 20px;
   text-align: center;
   line-height: 30px;
@@ -50,7 +51,7 @@ body {
 }
 
 .upload-icon:hover {
-  background-color: #0056b3;
+  background-color: #5c305e;
   transform: scale(1.1);
 }
 
@@ -62,13 +63,14 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  color: #ffffff;
 }
 
 /* Значок "редактировать" */
 .edit-icon {
   font-size: 16px;
   cursor: pointer;
-  color: #007bff;
+  color: #f700ff;
   transition: opacity 0.3s, transform 0.2s;
 }
 
@@ -79,7 +81,7 @@ body {
 
 /* Поле имени при редактировании */
 #profileName[contenteditable="true"] {
-  border-bottom: 1px solid #007bff;
+  border-bottom: 1px solid #f700ff;
   outline: none;
   padding: 2px;
 }
@@ -88,7 +90,7 @@ body {
 .profile p {
   margin: 5px 0;
   font-size: 16px;
-  color: #555;
+  color: #ffffff;
 }
 
 /* Кнопки */
@@ -96,8 +98,8 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  color: white;
-  background-color: #007bff;
+  color: #1a1a1a;
+  background-color: #f700ff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -106,7 +108,8 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #5c305e;
+  color: #ffffff;
 }
 
 /* Задания */
@@ -119,15 +122,17 @@ button:hover {
 #taskList li {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #5c305e;
+  border: 1px solid #f700ff;
   border-radius: 5px;
+  color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #taskList li:hover {
-  background-color: #f4f4f4;
+  background-color: #f700ff;
+  color: #1a1a1a;
 }
 
 /* Навигационное меню */
@@ -135,14 +140,15 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #007bff;
+  background-color: #1a1a1a;
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
+  border-top: 2px solid #5c305e;
 }
 
 nav a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   font-size: 16px;
 }
@@ -150,6 +156,7 @@ nav a {
 nav a.active {
   text-decoration: underline;
   font-weight: bold;
+  color: #f700ff;
 }
 
 /* Топ пользователей */
@@ -157,23 +164,24 @@ nav a.active {
   margin-top: 20px;
   list-style: none;
   padding: 0;
+  color: #ffffff;
 }
 
 #topUsersList li {
   padding: 10px;
   font-size: 16px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #5c305e;
 }
 
 /* Баланс */
 #userBalance {
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Секция заголовка */
 h1 {
   font-size: 28px;
   margin: 20px 0;
-  color: #333;
+  color: #f700ff;
 }
