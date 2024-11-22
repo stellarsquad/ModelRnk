@@ -14,7 +14,7 @@ body {
   width: 300px;
   padding: 20px;
   background-color: #5c305e; /* Фон профиля */
-  border: 2px solid #f700ff; /* Акцентная рамка */
+  /* border: 2px solid #f700ff;  Акцентная рамка */
   border-radius: 10px;
   text-align: center;
 }
