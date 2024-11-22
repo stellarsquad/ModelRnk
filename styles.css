@@ -1,6 +1,6 @@
 /* Общие стили */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #1a1a1a; /* Фон страницы */
@@ -8,14 +8,14 @@ body {
   text-align: center;
 }
 
-/* Контейнер для профиля */
-.profile {
-  margin: 20px auto;
-  width: 300px;
+/* Карточка профиля */
+.profile-card {
+  margin: 50px auto;
+  width: 320px;
   padding: 20px;
-  /* background-color: #5c305e;  Фон профиля */
-  /* border: 2px solid #f700ff;  Акцентная рамка */
-  border-radius: 10px;
+  background-color: #5c305e; /* Фон карточки */
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Тень */
   text-align: center;
 }
 
@@ -23,31 +23,31 @@ body {
 .avatar-container {
   position: relative;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .avatar-container img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 2px solid #f700ff;
+  border: 3px solid #f700ff;
 }
 
 /* Кнопка "+" для загрузки нового аватара */
 .upload-icon {
   position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 30px;
-  height: 30px;
+  bottom: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
   background-color: #f700ff;
   color: #1a1a1a;
   font-size: 20px;
   text-align: center;
-  line-height: 30px;
+  line-height: 35px;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .upload-icon:hover {
@@ -56,7 +56,7 @@ body {
 }
 
 /* Имя пользователя */
-.profile h2 {
+.profile-card h2 {
   font-size: 24px;
   margin: 10px 0;
   display: flex;
@@ -71,7 +71,7 @@ body {
   font-size: 16px;
   cursor: pointer;
   color: #f700ff;
-  transition: opacity 0.3s, transform 0.2s;
+  transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
 .edit-icon:hover {
@@ -86,8 +86,13 @@ body {
   padding: 2px;
 }
 
-/* Рейтинг и баланс */
-.profile p {
+/* Статистика: Рейтинг и Баланс */
+.profile-card .stats {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.profile-card p {
   margin: 5px 0;
   font-size: 16px;
   color: #ffffff;
@@ -95,21 +100,22 @@ body {
 
 /* Кнопки */
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   font-weight: bold;
-  color: #1a1a1a;
   background-color: #f700ff;
+  color: #1a1a1a;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   margin-top: 10px;
 }
 
 button:hover {
   background-color: #5c305e;
   color: #ffffff;
+  transform: scale(1.05);
 }
 
 /* Задания */
@@ -179,7 +185,7 @@ nav a.active {
   color: #ffffff;
 }
 
-/* Секция заголовка */
+/* Заголовки */
 h1 {
   font-size: 28px;
   margin: 20px 0;
