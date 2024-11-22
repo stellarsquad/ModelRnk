@@ -3,9 +3,7 @@ body {
   font-family: "Roboto", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(-45deg, #f0bffd, #a6d8ff, #ffd1d1, #f4f4ff);
-  background-size: 300% 300%;
-  animation: gradientFlow 10s ease infinite;
+  background-color: #1a1a1a; /* Однотонный фон */
   color: #ffffff; /* Основной текст */
   text-align: center;
 }
